@@ -7,17 +7,20 @@ public class FlyBehaviour : MonoBehaviour
     [SerializeField] private float speed = 1.5f;
     [SerializeField] private float rotationSpeed = 10f;
 
+    private SoundManager sound;
     private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sound = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            sound.PlayWingSFX();
             rb.velocity = Vector2.up * speed;
         }
     }
@@ -30,6 +33,9 @@ public class FlyBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Barrier")
+        {
+            sound.PlayGameOverSFX();
             GameManager.instance.GameOver();
+        }
     }
 }

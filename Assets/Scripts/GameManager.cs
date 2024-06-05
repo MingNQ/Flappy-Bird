@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
-    [SerializeField] private GameObject startCanvas;
     [SerializeField] private GameObject scoreCanvas;
     [SerializeField] private GameObject gameOverCanvas;
 
